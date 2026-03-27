@@ -10,12 +10,12 @@ import {
 } from '@/types/apiFootball';
 
 // API Configuration
-const API_BASE_URL = 'https://api-football-v1.p.rapidapi.com';
+const API_BASE_URL = 'https://allsportsapi2.p.rapidapi.com';
 const API_KEY = import.meta.env.VITE_RAPID_API_KEY;
 
 const API_HEADERS = {
   'x-rapidapi-key': API_KEY,
-  'x-rapidapi-host': 'api-football-v1.p.rapidapi.com',
+  'x-rapidapi-host': 'allsportsapi2.p.rapidapi.com',
 };
 
 // Cache management
