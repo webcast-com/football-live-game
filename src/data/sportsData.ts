@@ -55,15 +55,7 @@ export interface NewsArticle {
   readTime: string;
 }
 
-api-sports-widget data-type="config"{
-  data-key="8673444746a6314a40b74063b51be981"
-  data-sport="football"
-  data-lang="en"
-  data-theme="dark"
-  data-show-errors="true"
-  data-show-logos="true"
-  data-favorite="true"
-}
+
 
 export const liveMatches: LiveMatch[] = [
   { id: 1, sport: 'football', league: 'NFL', homeTeam: 'Kansas City Chiefs', awayTeam: 'Buffalo Bills', homeScore: 24, awayScore: 21, time: 'Q3 8:42', status: 'live', homeColor: '#E31837', awayColor: '#00338D', homeAbbr: 'KC', awayAbbr: 'BUF' },
