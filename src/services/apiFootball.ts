@@ -10,12 +10,13 @@ import {
 } from '@/types/apiFootball';
 
 // API Configuration
-const API_BASE_URL = 'https://allsportsapi2.p.rapidapi.com';
+const API_BASE_URL = 'https://api-football-v3.p.rapidapi.com';
 const API_KEY = import.meta.env.VITE_RAPID_API_KEY;
+const RAPID_API_HOST = 'api-football-v3.p.rapidapi.com';
 
 const API_HEADERS = {
   'x-rapidapi-key': API_KEY,
-  'x-rapidapi-host': 'allsportsapi2.p.rapidapi.com',
+  'x-rapidapi-host': RAPID_API_HOST,
 };
 
 // Cache management
@@ -85,7 +86,7 @@ async function fetchFromAPI<T>(
       method: 'GET',
       headers: {
         'x-rapidapi-key': apiKey,
-        'x-rapidapi-host': 'allsportsapi2.p.rapidapi.com',
+        'x-rapidapi-host': RAPID_API_HOST,
       },
     });
 
