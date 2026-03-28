@@ -112,21 +112,59 @@ Refetch intervals (optimized to stay within limits):
 - Verify your API key has access to the endpoints
 - Ensure the league/season is available in the API
 
-## Next Steps
+## Optional: Supabase API Key Backup & Management
 
-### Optional: Supabase Backup Storage
-To securely store and backup your API key in Supabase:
+This project includes an **optional Supabase utility** for securely storing and managing API keys with row-level security.
 
-1. Create a `secrets` table in Supabase
-2. Store encrypted API keys
-3. Update the service to fetch from Supabase if local env var is missing
+### Benefits
 
-Refer to the implementation plan for details.
+- **Centralized Management**: Manage all API keys in one place
+- **Secure Storage**: Keys encrypted at rest in Supabase
+- **Easy UI**: Click the Settings icon (⚙️) to add/manage keys
+- **Automatic Fallback**: App uses Supabase keys if environment variables aren't set
+- **Multi-Key Support**: Store multiple keys (production, staging, etc.)
+
+### Quick Setup
+
+1. **Database**: The migration script at `/scripts/setup-api-key-backup.sql` creates the `api_keys` table with RLS policies
+2. **UI**: Click the Settings icon (⚙️) in the header to open the API Key Manager
+3. **Usage**: Add your API key through the UI - it's automatically saved to Supabase
+
+### Key Priority
+
+The application uses this order for API keys:
+1. **Environment Variables** (highest priority) - `VITE_RAPID_API_KEY`
+2. **Supabase Storage** (fallback) - Automatically fetched if env var not set
+
+### Features
+
+- View all stored keys
+- Add new keys with optional metadata
+- Copy keys to clipboard
+- Show/hide key values for security
+- Delete or deactivate keys
+- Track creation and last usage dates
+
+### Detailed Guide
+
+For comprehensive documentation on the Supabase API key backup system, see:
+- [`SUPABASE_API_KEY_BACKUP.md`](./SUPABASE_API_KEY_BACKUP.md)
+
+This includes:
+- Complete setup instructions
+- Database schema details
+- TypeScript API reference
+- Security considerations
+- Troubleshooting guide
 
 ## Support
 
 For API-Football documentation, visit:
 - [API-Football Docs](https://www.api-football.com/documentation-v3)
 - [Rapid API Console](https://rapidapi.com/api-sports/api/api-football)
+
+For Supabase help:
+- [Supabase Docs](https://supabase.com/docs)
+- [Row-Level Security Guide](https://supabase.com/docs/guides/auth/row-level-security)
 
 For this project's implementation, check the code comments and type definitions.

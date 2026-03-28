@@ -45,14 +45,26 @@ function setCachedData<T>(key: string, data: T): void {
   });
 }
 
-// Generic fetch function
+// Generic fetch function with API key fallback
 async function fetchFromAPI<T>(
   endpoint: string,
   params: Record<string, string | number> = {},
   cacheDuration = CACHE_DURATION
 ): Promise<T> {
-  if (!API_KEY) {
-    throw new Error('API_FOOTBALL_KEY environment variable is not set. Please configure your Rapid API key in .env.local');
+  let apiKey = API_KEY;
+  
+  // If no environment key, try to get from Supabase backup
+  if (!apiKey) {
+    try {
+      const { ApiKeyManager } = await import('./apiKeyManager');
+      apiKey = await ApiKeyManager.getApiKey('api-football');
+    } catch (error) {
+      console.warn('[API Football] Could not fetch from Supabase backup:', error);
+    }
+  }
+  
+  if (!apiKey) {
+    throw new Error('API key not found. Please set VITE_RAPID_API_KEY or store the key in Supabase via settings.');
   }
 
   const cacheKey = `${endpoint}:${JSON.stringify(params)}`;
@@ -71,7 +83,10 @@ async function fetchFromAPI<T>(
   try {
     const response = await fetch(url, {
       method: 'GET',
-      headers: API_HEADERS,
+      headers: {
+        'x-rapidapi-key': apiKey,
+        'x-rapidapi-host': 'allsportsapi2.p.rapidapi.com',
+      },
     });
 
     if (!response.ok) {
