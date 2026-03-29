@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Search, Menu, X, Bell, User, TrendingUp } from 'lucide-react';
 import { Sport } from '@/data/sportsData';
-import ApiKeyManager from '@/components/settings/ApiKeyManager';
 
 interface HeaderProps {
   activeSport: Sport;
@@ -73,7 +72,6 @@ const Header: React.FC<HeaderProps> = ({ activeSport, onSportChange, searchQuery
             <button className="p-2.5 rounded-xl bg-white/5 text-gray-400 hover:text-white hover:bg-white/10 transition-all">
               <User className="w-5 h-5" />
             </button>
-            <ApiKeyManager />
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="lg:hidden p-2.5 rounded-xl bg-white/5 text-gray-400 hover:text-white hover:bg-white/10 transition-all"
