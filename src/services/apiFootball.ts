@@ -44,26 +44,16 @@ function setCachedData<T>(key: string, data: T): void {
   });
 }
 
-// Generic fetch function with API key fallback
+// Generic fetch function
 async function fetchFromAPI<T>(
   endpoint: string,
   params: Record<string, string | number> = {},
   cacheDuration = CACHE_DURATION
 ): Promise<T> {
-  let apiKey = API_KEY;
-  
-  // If no environment key, try to get from Supabase backup
-  if (!apiKey) {
-    try {
-      const { ApiKeyManager } = await import('./apiKeyManager');
-      apiKey = await ApiKeyManager.getApiKey('api-football');
-    } catch (error) {
-      console.warn('[API Football] Could not fetch from Supabase backup:', error);
-    }
-  }
+  const apiKey = API_KEY;
   
   if (!apiKey) {
-    throw new Error('API key not found. Please set VITE_RAPID_API_KEY or store the key in Supabase via settings.');
+    throw new Error('API key not found. Please set VITE_RAPID_API_KEY environment variable.');
   }
 
   const cacheKey = `${endpoint}:${JSON.stringify(params)}`;
