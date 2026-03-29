@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import ApiKeyManager, { ApiKey } from '@/services/apiKeyManager';
+import { ApiKeyManager, type ApiKey } from '@/services/apiKeyManager';
 
 const ApiKeyManagerComponent: React.FC = () => {
   const [open, setOpen] = useState(false);
