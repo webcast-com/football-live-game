@@ -42,7 +42,7 @@ export interface WidgetsApiResponse {
   };
 }
 
-const WIDGETS_API_BASE = 'https://widgets.api-sports.io/3.1.0';
+const WIDGETS_API_BASE = 'https://widgets.api-sports.io/3.1.0/widgets.j';
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
 
 interface CacheEntry<T> {
